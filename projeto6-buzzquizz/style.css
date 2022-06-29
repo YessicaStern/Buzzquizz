@@ -22,6 +22,11 @@ body{
     align-items: center;
     justify-content: center;
     box-shadow: 0px 4px 4px 0px #00000040;
+    position: fixed;
+    top: 0;
+}
+.sub-body{
+    margin-top: 70px;
 }
 .esconder{
     display: none;
@@ -149,36 +154,12 @@ h1,h2,h3,h4,h5,h6{
     word-break: break-word;
 }
 
-/*breakpoint 1100px*/
-@media (max-width: 1100px){
-
-    .add-quizz{
-        width: 80%;
-        
-    }
-
-    .all-quizzes{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-       
-    }
-
-    .title{
-        text-align: left;
-        width: 100%;
-    }
-
-}
-
 
 
 /******************************************************* CRIAR QUIZ *******************************************************/
 
 .h6-desktop-8a11{
-    margin: 120px auto 50px auto;
+    margin: 60px auto 40px auto;
     font-size: 23px;
     font-weight: 700;
     line-height: 27px;
@@ -215,11 +196,18 @@ input::placeholder{
 .botao-desktop{
     height: 54px;
     width: 368px;
+}
+.botao-acessar-quizz{
+    height: 44px;
+    width: 220px;
+}
+.botao-desktop,.botao-acessar-quizz{
     border-radius: 15px;
     background-color: #EC362D;
-    margin-top: 80px;
+    margin-top: 70px;
     border: 1px solid transparent;
     margin-bottom: 50px;
+    cursor: pointer;
 }
 .box-8,.box-9,.box-10{
     background-color: #ffffff;
@@ -231,7 +219,7 @@ input::placeholder{
 .box-8{
     align-items: center;
 }
-.desktop-8,.desktop-9,.desktop-10{
+.desktop-8,.desktop-9,.desktop-10,.desktop-11{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -258,6 +246,10 @@ input::placeholder{
 .box-10{
     height: 316px;
     width: 600px;
+    padding: 20px;
+}
+.box-10 input{
+    margin-bottom: 13px;
 }
 .quadros{
     height: 74px;
@@ -273,6 +265,108 @@ input::placeholder{
 .icone-escrever{
     width: 20px;
     height: 20px;
+    cursor: pointer;
+}
+.imagem-do-quizz{
+    width: 500px;
+    height: 266px;
+    background-color: #EC362D;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    position: relative;
+}
+.h3-escrita-da-img{
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    color: #FFFFFF;
+    position: absolute;
+}
+.voltar-pra-home{
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    color: #818181; 
 }
 
 /*******************************************************  QUIZ PRONTO  ******************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*breakpoint 1100px*/
+@media (max-width: 1100px){
+
+/********************************************************    TELA 1     *********************************************************/
+    .add-quizz{
+        width: 80%;
+        
+    }
+
+    .all-quizzes{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+    }
+
+    .title{
+        text-align: left;
+        width: 100%;
+    }
+
+
+
+
+/********************************************************    TELA 2     *********************************************************/
+
+
+    .box-8,.box-9,.box-10,.quadros{
+        width: 375px;
+    }
+    .box-10{
+        height: 440px;
+    }
+    input{
+        width: 341px;
+    }
+    .botao-desktop{
+        width: 324px;
+    }
+    .imagem-do-quizz{
+        height: 181px;
+        width: 340px;
+    }
+    .h3-escrita-da-img{
+        font-size: 19px;
+    }
+    .h4-desktop-8a11,.h5-desktop-8a11,.h6-desktop-8a11{
+        font-size: 20px;
+    }
+    .voltar-pra-home{
+        font-size: 18px;
+    }
+    .descricao{
+        height: 177px;
+        padding-bottom: 150px;
+    }
+
+
+}
+
