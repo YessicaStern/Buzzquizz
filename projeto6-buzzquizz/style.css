@@ -146,7 +146,7 @@ h1,h2,h3,h4,h5,h6{
     top: 35%;
     font-size: 19px;
     font-weight: 400;
-    word-wrap: break-word;
+    word-break: break-word;
 }
 
 /*breakpoint 1100px*/
