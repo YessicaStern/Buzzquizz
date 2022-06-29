@@ -49,6 +49,6 @@ function botaoCriarQuizz (){
     esconder.classList.add('esconder');
     esconder2.classList.add('esconder');
 
-    let aparecer = document.querySelector(".desktop-8");
+    let aparecer = document.querySelector(".d-9");
     aparecer.classList.remove('esconder')
 }
