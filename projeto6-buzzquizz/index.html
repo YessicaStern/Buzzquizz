@@ -15,40 +15,35 @@
 <body>
 
    <div class="top">BuzzQuizz</div>
-   <p>TESTE</p>
 
-  <!--******************************************************  TELA 01 LISTA DE QUIZZES  ******************************************************-->
+<!--******************************************************  TELA 01 LISTA DE QUIZZES  ******************************************************-->
+<div class="display-one">
 
-<div class="first-quizz esconder">
-  <div class="add-quizz">
-    <div class="alert"><p>Você não criou nenhum quizz ainda :(</p></div>
-    <button>Criar Quizz</button>
-  </div>
-</div>
+    <div class="first-quizz">
+    <div class="add-quizz">
+        <div class="alert"><p>Você não criou nenhum quizz ainda :(</p></div>
+        <button onclick="botaoCriarQuizz()">Criar Quizz</button>
+    </div>
+    </div>
 
 
-<div class="your-quizzes-box esconder">
-    <div class="your-quizzes">Seus Quizzes <ion-icon name="add-circle"></ion-icon></div>
+    <div class="your-quizzes-box esconder">
+        <div class="your-quizzes">Seus Quizzes <ion-icon name="add-circle"></ion-icon></div>
     
-    <div class="your-quizz">
-        <div class="quizz">
-            <img src="https://media.timeout.com/images/103415398/750/422/image.jpg" alt="">
-            <p>Qual dos personagens de Friends mais te representa?</p>
+        <div class="your-quizz">
+            <div class="quizz">
+                <img src="https://media.timeout.com/images/103415398/750/422/image.jpg" alt="">
+                <p>Qual dos personagens de Friends mais te representa?</p>
+            </div>
         </div>
     </div>
+
 </div>
 
-    <div class="title esconder">Todos os Quizzes</div>
-      
-    <div class="all-quizzes">
-
-    <!--<div class="quizz">
-        <img src="${quizzes[i].image}" alt="">
-        <p>${quizzes[i].title}</p>
-    </div>-->
-
-    </div>
-    
+<div class="display-two">
+    <div class="title">Todos os Quizzes</div>
+    <div class="all-quizzes"></div>
+</div>
 <!--******************************************************  TELA 02  ******************************************************-->
 
        <!--
