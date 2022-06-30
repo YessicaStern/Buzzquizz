@@ -92,7 +92,7 @@ function abrirQuizz (resposta){
     esconder2.classList.add('esconder');
 
     //adicionar a pagina do quizz
-    let aparecer = document.querySelector('.box-questions');
+    let aparecer = document.querySelector('.push-question');
     let aparecer2 = document.querySelector('.quizz-top')
     aparecer.classList.remove('esconder');
     aparecer2.classList.remove('esconder');
@@ -112,36 +112,38 @@ function abrirQuizz (resposta){
     //ARRUMAR A COR DA DIV QUESTION
 
     for(i = 0; i < obj.questions.length ; i++){
-        let divQuestion = document.querySelector('.box-img-question')
-        console.log(obj.questions[i])
-        console.log(obj.questions[i].answers[i].image)
-        console.log(obj.questions[i].title)
-
+        let divQuestion = document.querySelector('.push-question')
+        console.log(divQuestion)
         divQuestion.innerHTML += `
-        <div class="question">
-                <p>${obj.questions[i].title}</p>
-            </div>
+
+        <div class="box-questions">
+            <div class="box-img-question">
+                <div class="question">
+                    <p>${obj.questions[i].title}</p>
+                </div>
     
     
-            <div class="options">
-                <img src="${obj.questions[i].answers[i].image}" alt="">
-                <p>${obj.questions[i].answers[i].text}</p>
-            </div>
+                <div class="options">
+                    <img src="${obj.questions[i].answers[i].image}" alt="">
+                    <p>${obj.questions[i].answers[i].text}</p>
+                </div>
 
-            <div class="options">
-                <img src="${obj.questions[i].answers[i].image}" alt="">
-                <p>${obj.questions[i].answers[i].text}</p>
-            </div>
+                <div class="options">
+                    <img src="${obj.questions[i].answers[i].image}" alt="">
+                    <p>${obj.questions[i].answers[i].text}</p>
+                </div>
 
-            <div class="options">
-                <img src="${obj.questions[i].answers[i].image}" alt="">
-                <p>${obj.questions[i].answers[i].text}</p>
-            </div>
+                <div class="options">
+                    <img src="${obj.questions[i].answers[i].image}" alt="">
+                    <p>${obj.questions[i].answers[i].text}</p>
+                </div>
             
-            <div class="options">
-                <img src="${obj.questions[i].answers[i].image}" alt="">
-                <p>${obj.questions[i].answers[i].text}</p>
+                <div class="options">
+                    <img src="${obj.questions[i].answers[i].image}" alt="">
+                    <p>${obj.questions[i].answers[i].text}</p>
+                </div>
             </div>
+        </div>
             `
             }
 
