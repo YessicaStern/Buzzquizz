@@ -1,12 +1,7 @@
 /******************************************** Desktop 8  ***********************************************/
 
-
 let d9= document.querySelector(".d-9");
-
-
-
-
-
+let d8=document.querySelector(".d-8");
 
 
 let tituloQuiz;
