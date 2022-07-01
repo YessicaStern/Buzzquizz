@@ -156,7 +156,7 @@ h1,h2,h3,h4,h5,h6{
 /******************************************************* CRIAR QUIZ *******************************************************/
 
 .h6-desktop-8a11{
-    margin: 60px auto 40px auto;
+    margin: 60px auto 65px auto;
     font-size: 23px;
     font-weight: 700;
     line-height: 27px;
@@ -220,6 +220,7 @@ input::placeholder{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 50px;
 }
 .box-8{
     height: 256px;
@@ -232,6 +233,7 @@ input::placeholder{
     height: 825px;
     width: 600px;
     padding: 20px;
+    margin-bottom: 50px;
 }
 .box-9 input{
     margin-bottom: 13px;
@@ -257,7 +259,8 @@ input::placeholder{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 25px;
+    margin-bottom: 25px;
+  /*  margin-top: 25px;*/
 }
 .icone-escrever{
     width: 20px;
