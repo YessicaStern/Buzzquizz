@@ -10,8 +10,8 @@ let d10= document.querySelector(".d-10");
 let d11= document.querySelector(".d-11");
 let desktop9=document.querySelector(".desktop-9");
 let desktop10=document.querySelector(".desktop-10");
-
-//d11.classList.remove("esconder");
+let desktop11=document.querySelector(".desktop-11");
+d11.classList.remove("esconder");
 
 let tituloQuiz;
 let URLimg; 
@@ -114,7 +114,7 @@ function SeguirCriarNiveis(){
         let URLimgCerta =new URL (imgCerta);
         let URLimgErr1 = new URL (imgErr1);
         let URLimgErr2 = new URL (imgErr2);
-        let URLimgErr3= new URL (imgErr3);
+        let URLimgErr3= new URL (imgErr3);*/
     
 
         // ajeitar isso aqui
@@ -172,7 +172,7 @@ function SeguirCriarNiveis(){
          }
 
     }else{
-        alert("Para continuar os campos não devem estar vazios, o texto da pergunta deve ter no mínimo 20 caracteres, a cor precisa ser no formato hexadecimal e as imagens no formato de URL")
+        alert("Para continuar os campos não devem estar vazios, o texto da pergunta deve ter no mínimo 20 caracteres, a cor precisa ser no formato hexadecimal e as imagens no formato de URL");
     } 
 }  
 }
@@ -228,7 +228,7 @@ function finalizarQuiz(){
         let tituloNivel=niveis.querySelector(".titulo-nivel").value;
         let porcentagem=niveis.querySelector(".porcentagem").value;
         let imgNivel=niveis.querySelector(".URL-img-nivel").value;
-        let descricao=niveis.querySelector(".descricao").value;
+        let descricao=niveis.querySelector(".descricao").value;*/
 
        /* try {
            
@@ -293,11 +293,18 @@ function VerObjeto(resposta){
     imageFin=resposta.data.image;
     PegarQuizFeito();
 }
-
+//let idFin=9436;
+//PegarQuizFeito();
 function  PegarQuizFeito(){
-    let promessa= axios.post(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idFin}`)
-    promessa.then(chamarQuiz);
+    let promessa= axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idFin}`)
+    promessa.then(chamarQuiz);  
 }
-function chamarQuiz(){
-    
+function chamarQuiz(resposta){
+    console.log(resposta);
+    let carregarQuiz=`<img class="imagem-do-quizz" src="${resposta.data.image}"/><h3 class="h3-escrita-da-img">${resposta.data.title}</h3>
+    <button class="botao-acessar-quizz"><h5 class="h5-desktop-8a11" >Acessar Quizz</h5></button>
+    <div class="voltar-pra-home"><h4 class="voltar-pra-home">Voltar pra home</h4></div>`;
+    desktop11.innerHTML+= carregarQuiz;
 }
+
+
