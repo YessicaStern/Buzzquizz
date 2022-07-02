@@ -306,5 +306,3 @@ function chamarQuiz(resposta){
     <div class="voltar-pra-home"><h4 class="voltar-pra-home">Voltar pra home</h4></div>`;
     desktop11.innerHTML+= carregarQuiz;
 }
-
-

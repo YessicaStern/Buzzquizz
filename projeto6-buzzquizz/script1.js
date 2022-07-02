@@ -2,13 +2,20 @@
 //ele envia um objeto com 50 ultimos quizzes;
 
 //da pra mudar a versão do link para "v7" para testar
+<<<<<<< HEAD
 
+=======
+>>>>>>> 00f5771e91d071b321ab7b5d603fb30c2a64c1d3
 let url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes';
 let quizzes;
 let divQuizz = document.querySelector('.all-quizzes');
 let obj
-let teste = []
+let questions = []
+let answers = []
 let perguntas
+let alternativasSelecionadas = 0
+let pontos = 0
+let quantidadeCliques = 0
 
 renderizarQuizzes();
 
@@ -29,10 +36,11 @@ function executarPromessa(resposta) {
 
     quizzes = resposta.data;
     
+    //add todos os quizzes
     for (i = 0 ; i < quizzes.length ; i ++){
         divQuizz.innerHTML += `
         <div class="quizz" onclick="pegarIdQuizz(this, ${quizzes[i].id})">
-        <img src="${quizzes[i].image}" alt="teste">
+        <img src="${quizzes[i].image}" alt="">
         <p>${quizzes[i].title}</p>
         </div>
         `
@@ -111,15 +119,14 @@ function addTemplateQuizz(){
         divQuestion.innerHTML += `
 
         <div class="box-questions">
-            <div class="box-img-question">
+            <div class="box-img-question catch-${i}">
                 <div class="question">
                     <p>${perguntas[i].title}</p>
                 </div>
-                <div class="add-question catch-${i}"></div>
             </div>
         </div>
             `
-        teste.push(i)
+        questions.push(i)
         }
 
     //ADD RESPOSTAS
@@ -128,41 +135,120 @@ function addTemplateQuizz(){
 }
 
 function addQuestoes(){
+ 
 
+    //saber quantidade de perguntas
     for (let j = 0; j < perguntas.length ; j++){
 
         let perguntaEsp = perguntas[j].answers
 
-        let divResposta = document.querySelector(`.catch-${teste[j]}`)
-        
+        let divResposta = document.querySelector(`.catch-${questions[j]}`)
+
+        //add respostas
         for (let i = 0; i < perguntas[j].answers.length; i++){
 
             divResposta.innerHTML += 
             `
-            <div class="options" onclick="respostaVerificar(this, ${perguntaEsp[i].isCorrectAnswer})">
+            <div class="options catchAnswer-${i} ${perguntaEsp[i].isCorrectAnswer}" onclick="respostaSelecionar(this, ${perguntaEsp[i].isCorrectAnswer})">
                 <img src="${perguntaEsp[i].image}" alt="">
                 <p>${perguntaEsp[i].text}</p>
             </div>
             `
-        }
+        }        
+    } 
 
-    }
-   
 }
 
-function respostaVerificar(click, booleanoResposta){
-    console.log(booleanoResposta)
-    console.log(Boolean(booleanoResposta))
 
-    console.log(click)
+
+function respostaSelecionar(click, resultado){
+
+    //saber quantidade de vezes clicou
+    if (click) {
+        quantidadeCliques++
+    }else{}
     
-    if (Boolean(booleanoResposta)){
-        console.log("voce acertou")
-        
+    let perguntaSelecionada = click.parentNode
+    let respostaCerta = perguntaSelecionada.querySelector('.true')    
+    let respostaErrada = perguntaSelecionada.querySelectorAll('.false')
+    
+    //adicionar classe wrong em todas as eradas
+    for (let i = 0; i < respostaErrada.length; i++) {
+        respostaErrada[i] = perguntaSelecionada.querySelector('.false')
+        respostaErrada[i].classList.add('wrong')
+        //remover onclick
+        respostaErrada[i].removeAttribute('onclick')
     }
+    //remover onclick
+    respostaCerta.removeAttribute('onclick')
+
+    //saber quantidade de resposta por pergunta
+    let quantidade = perguntaSelecionada.querySelectorAll('.options')
+    answers = quantidade   
+    
+    //adiciona opacity em todas as respostas
+    for (let i = 0; i < answers.length; i++) {
+
+        let todos = perguntaSelecionada.querySelector(`.catchAnswer-${i}`)
+
+        //respostaErrada.classList.add('wrong')
+        todos.classList.add('opacity')
+
+    }
+
+    //adiciona classe correct
+    respostaCerta.classList.add('correct')
+    //remove classe opacity da resposta escolhida
+    click.classList.remove('opacity')
+
+    //contador de pontos
+    if (Boolean(resultado)){
+        pontos++
+    }
+    
+    fimDoQuizz()
+    //setTimeout(fimDoQuizz, 2000)
+}
+
+function fimDoQuizz(){
+
+    if(perguntas.length === quantidadeCliques){
+        let divResultado = document.querySelector('.result-all')
+        divResultado.classList.remove('esconder')
+
+        console.log("ACABOU")
+        divResultado.innerHTML = `
+        <div class="box-result">
+        <div class="box-img-result">
+
+            <div class="result-text">
+                <p>TESTE</p>
+            </div>
+          
+            <div class="result">
+                <img src="https://img.freepik.com/fotos-gratis/imagem-aproximada-em-tons-de-cinza-de-uma-aguia-careca-americana-em-um-fundo-escuro_181624-31795.jpg?w=2000" alt="">
+                <p>teste</p>
+             </div>
+        
+        </div>
+        </div>
+        
+        <div class="restart">
+        <button>Reiniciar Quizz</button>
+        <button>Voltar para home</button>
+        </div>
+        ` 
+    }
+<<<<<<< HEAD
     else{
         console.log("voce errou")
     }
 }
 
 
+=======
+    let element = document.querySelector('.result')
+    element.scrollIntoView()
+       
+}
+>>>>>>> 00f5771e91d071b321ab7b5d603fb30c2a64c1d3

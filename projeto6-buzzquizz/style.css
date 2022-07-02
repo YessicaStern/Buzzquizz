@@ -376,9 +376,12 @@ input::placeholder{
     color:#009C22
 }
 
-.wrong, .wrong p{
-    opacity: 0.3;
+.wrong{
     color: #FF4B4B;
+}
+
+.opacity{
+    opacity: 0.3;
 }
 
 .box-result{
