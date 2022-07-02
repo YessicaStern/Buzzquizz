@@ -2,11 +2,12 @@
 //ele envia um objeto com 50 ultimos quizzes;
 
 //da pra mudar a versão do link para "v7" para testar
-
-let url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes';
+let url = 'https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes';
 let quizzes;
 let divQuizz = document.querySelector('.all-quizzes');
 let obj
+let teste = []
+let perguntas
 
 renderizarQuizzes();
 
@@ -26,7 +27,6 @@ function erroPromessa() {
 function executarPromessa(resposta) {  
 
     quizzes = resposta.data;
-
     
     for (i = 0 ; i < quizzes.length ; i ++){
         divQuizz.innerHTML += `
@@ -37,7 +37,6 @@ function executarPromessa(resposta) {
         `
     }
 
-    
 }
 
 function renderizarQuizzes() {
@@ -45,6 +44,7 @@ function renderizarQuizzes() {
 
     promessa.then(executarPromessa);
     promessa.catch(erroPromessa);    
+
 }
 
 //--------------------------------------------------------------------------------------------
@@ -58,8 +58,8 @@ function botaoCriarQuizz (){
 
     let aparecer = document.querySelector(".d-8");
     aparecer.classList.remove('esconder')
-}
 
+}
 
 //--------------------------------------------------------------------------------------------
 
@@ -70,7 +70,6 @@ function pegarIdQuizz(click, idQuizz){
     promessa.catch(erroPromessa)
     
 }
-
 
 function abrirQuizz (resposta){
     obj = resposta.data
@@ -92,8 +91,8 @@ function abrirQuizz (resposta){
 }
 
 function addTemplateQuizz(){
-
-    //topo -> adc na div do "quizz-top" 
+        
+    //ADD TOPO
     let divAdd = document.querySelector('.quizz-top')
     divAdd.innerHTML += `
           <div class="top-img">
@@ -102,25 +101,12 @@ function addTemplateQuizz(){
           </div>
           `
 
-    //perguntas -> adc na div do "box-img-question"
-    //ARRUMAR A COR DA DIV QUESTION
-    let perguntas = obj.questions
+    perguntas = obj.questions
 
-
-  
-    for(i = 0; i < obj.questions.length ; i++){
-        console.log(obj.questions.length)
-        //onsole.log(perguntas[i].answers[i].image) 
-        //console.log(perguntas[i].answers[i+1].image)
-        //console.log(perguntas[i].answers[i+2].image)
-        //console.log(perguntas[i].answers[i+3].image)
-        //console.log(perguntas[i].answers[i].isCorrectAnswer)
-
+    //ADD PERGUNTAS
+    for(let i = 0; i < obj.questions.length ; i++){
         let divQuestion = document.querySelector('.push-question')
         
-
-        //adicionar a [imagem - text] corretos; 
-        //aleatorizar as opções
         divQuestion.innerHTML += `
 
         <div class="box-questions">
@@ -128,40 +114,50 @@ function addTemplateQuizz(){
                 <div class="question">
                     <p>${perguntas[i].title}</p>
                 </div>
-    
-    
-                <div class="options" onclick="respostaVerificar(this, ${perguntas[i].answers[i].isCorrectAnswer})">
-                    <img src="${perguntas[i].answers[i].image}" alt="">
-                    <p>${perguntas[i].answers[i].text}</p>
-                </div>
-
-                <div class="options" onclick="respostaVerificar(this, ${perguntas[i].answers[i].isCorrectAnswer})>
-                    <img src="${perguntas[i].answers[i].image}" alt="">
-                    <p>${perguntas[i].answers[i].text}</p>
-                </div>
-
-                <div class="options" onclick="respostaVerificar(this, ${perguntas[i].answers[i].isCorrectAnswer})>
-                    <img src="${perguntas[i].answers[i].image}" alt="">
-                    <p>${perguntas[i].answers[i].text}</p>
-                </div>
-            
-                <div class="options" onclick="respostaVerificar(this, ${perguntas[i].answers[i].isCorrectAnswer})>
-                    <img src="${perguntas[i].answers[i].image}" alt="">
-                    <p>${perguntas[i].answers[i].text}</p>
-                </div>
+                <div class="add-question catch-${i}"></div>
             </div>
         </div>
             `
-            }           
+        teste.push(i)
+        }
 
+    //ADD RESPOSTAS
+    addQuestoes()
+
+}
+
+function addQuestoes(){
+
+    for (let j = 0; j < perguntas.length ; j++){
+
+        let perguntaEsp = perguntas[j].answers
+
+        let divResposta = document.querySelector(`.catch-${teste[j]}`)
+        
+        for (let i = 0; i < perguntas[j].answers.length; i++){
+
+            divResposta.innerHTML += 
+            `
+            <div class="options" onclick="respostaVerificar(this, ${perguntaEsp[i].isCorrectAnswer})">
+                <img src="${perguntaEsp[i].image}" alt="">
+                <p>${perguntaEsp[i].text}</p>
+            </div>
+            `
+        }
+
+    }
+   
 }
 
 function respostaVerificar(click, booleanoResposta){
     console.log(booleanoResposta)
     console.log(Boolean(booleanoResposta))
 
+    console.log(click)
+    
     if (Boolean(booleanoResposta)){
         console.log("voce acertou")
+        
     }
     else{
         console.log("voce errou")
