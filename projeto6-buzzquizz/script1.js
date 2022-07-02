@@ -202,18 +202,18 @@ function respostaSelecionar(click, resultado){
         pontos++
     }
     
-    setTimeout(fimDoQuizz, 2000)
+    fimDoQuizz()
+    //setTimeout(fimDoQuizz, 2000)
 }
 
 function fimDoQuizz(){
 
-    let divResultado = document.querySelector('.result-all')
-    console.log(divResultado)
-    divResultado.classList.remove('esconder')
-
     if(perguntas.length === quantidadeCliques){
+        let divResultado = document.querySelector('.result-all')
+        divResultado.classList.remove('esconder')
+
         console.log("ACABOU")
-        divResultado += `
+        divResultado.innerHTML = `
         <div class="box-result">
         <div class="box-img-result">
 
@@ -228,8 +228,14 @@ function fimDoQuizz(){
         
         </div>
         </div>
+        
+        <div class="restart">
+        <button>Reiniciar Quizz</button>
+        <button>Voltar para home</button>
+        </div>
         ` 
     }
     let element = document.querySelector('.result')
     element.scrollIntoView()
+       
 }
