@@ -6,7 +6,8 @@ let url = 'https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes';
 let quizzes;
 let divQuizz = document.querySelector('.all-quizzes');
 let obj
-let teste = []
+let questions = []
+let answers = []
 let perguntas
 
 renderizarQuizzes();
@@ -28,10 +29,11 @@ function executarPromessa(resposta) {
 
     quizzes = resposta.data;
     
+    //add todos os quizzes
     for (i = 0 ; i < quizzes.length ; i ++){
         divQuizz.innerHTML += `
         <div class="quizz" onclick="pegarIdQuizz(this, ${quizzes[i].id})">
-        <img src="${quizzes[i].image}" alt="teste">
+        <img src="${quizzes[i].image}" alt="">
         <p>${quizzes[i].title}</p>
         </div>
         `
@@ -110,15 +112,14 @@ function addTemplateQuizz(){
         divQuestion.innerHTML += `
 
         <div class="box-questions">
-            <div class="box-img-question">
+            <div class="box-img-question catch-${i}">
                 <div class="question">
                     <p>${perguntas[i].title}</p>
                 </div>
-                <div class="add-question catch-${i}"></div>
             </div>
         </div>
             `
-        teste.push(i)
+        questions.push(i)
         }
 
     //ADD RESPOSTAS
@@ -127,39 +128,77 @@ function addTemplateQuizz(){
 }
 
 function addQuestoes(){
+ 
 
+    //saber quantidade de perguntas
     for (let j = 0; j < perguntas.length ; j++){
 
         let perguntaEsp = perguntas[j].answers
 
-        let divResposta = document.querySelector(`.catch-${teste[j]}`)
-        
+        let divResposta = document.querySelector(`.catch-${questions[j]}`)
+
+        //add respostas
         for (let i = 0; i < perguntas[j].answers.length; i++){
 
             divResposta.innerHTML += 
             `
-            <div class="options" onclick="respostaVerificar(this, ${perguntaEsp[i].isCorrectAnswer})">
+            <div class="options catchAnswer-${i} ${perguntaEsp[i].isCorrectAnswer}" onclick="respostaSelecionar(this, ${perguntaEsp[i].isCorrectAnswer})">
                 <img src="${perguntaEsp[i].image}" alt="">
                 <p>${perguntaEsp[i].text}</p>
             </div>
             `
-        }
+        }        
+    } 
 
-    }
-   
 }
 
-function respostaVerificar(click, booleanoResposta){
-    console.log(booleanoResposta)
-    console.log(Boolean(booleanoResposta))
+let alternativasSelecionadas = 0
+let pontos = 0
+let quantidadeCliques = 0
 
-    console.log(click)
+function respostaSelecionar(click, resultado){
+
+    //saber quantidade de vezes clicou
+    if (click) {
+        quantidadeCliques++
+    }
     
-    if (Boolean(booleanoResposta)){
-        console.log("voce acertou")
-        
+    let perguntaSelecionada = click.parentNode
+    let respostaCerta = perguntaSelecionada.querySelector('.true')    
+    let respostaErrada = perguntaSelecionada.querySelectorAll('.false')
+    
+    //adicionar classe wrong em todas as eradas
+    for (let i = 0; i < respostaErrada.length; i++) {
+        respostaErrada[i] = perguntaSelecionada.querySelector('.false')
+        respostaErrada[i].classList.add('wrong')
     }
-    else{
-        console.log("voce errou")
+
+
+    //saber quantidade de resposta por pergunta
+    let quantidade = perguntaSelecionada.querySelectorAll('.options')
+    answers = quantidade
+    
+    //adiciona opacity em todas as respostas
+    for (let i = 0; i < answers.length; i++) {
+
+        let todos = perguntaSelecionada.querySelector(`.catchAnswer-${i}`)
+
+        //respostaErrada.classList.add('wrong')
+        todos.classList.add('opacity')
+
     }
+
+    //adiciona classe correct
+    respostaCerta.classList.add('correct')
+
+    //remove classe opacity da resposta escolhida
+    click.classList.remove('opacity')
+
+    //contador de pontos
+    if (Boolean(resultado)){
+        pontos++
+    }
+    
 }
+
+//FALTA FAZER TRAVAR O CLICK, PARA N PODER CLICAR MAIS DE UMA VEZ
