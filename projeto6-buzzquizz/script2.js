@@ -1,25 +1,28 @@
+//observaçoões gerais
+//alert executado varias vezes em d-9 e d-10
+//ajeitar comparação de url
+//níveis só prossegue com 2 clicks 
 /******************************************** Desktop 8  ***********************************************/
 
-//comparar se url existe para dara o alert nos 3 casos
 let d8=document.querySelector(".d-8");
 let d9= document.querySelector(".d-9");
 let d10= document.querySelector(".d-10");
-let d11= document.querySelector(".d-10");
+let d11= document.querySelector(".d-11");
 let desktop9=document.querySelector(".desktop-9");
 let desktop10=document.querySelector(".desktop-10");
 
-d10.classList.remove("esconder");    
-
+//d11.classList.remove("esconder");
 
 let tituloQuiz;
 let URLimg; 
 let qtdPerguntas;
-let qtdNiveis=2;
+let qtdNiveis;
 let perguntasFechadas;
 let detalhesPerguntas;
 let selecionado;
 let dadosPerguntas=[];
-/*
+
+
 function SeguirCriarPerguntas(){
 
     tituloQuiz =document.querySelector(".titulo").value;
@@ -125,7 +128,7 @@ function SeguirCriarNiveis(){
             } catch (error) {
                 
             }
-        *//*
+        */
 
         ObjPerguntas={
 			title: textoPergunta,
@@ -173,7 +176,7 @@ function SeguirCriarNiveis(){
     } 
 }  
 }
-*/
+
 /********************************************************    NIVEIS     *******************************************************/
 
 
@@ -252,18 +255,49 @@ function finalizarQuiz(){
                 console.log(dadosNiveis);
 
                 if(dadosNiveis.length==qtdNiveis){    
-                 d10.classList.add("esconder");
-                 d11.classList.remove("esconder");
+                    d10.classList.add("esconder");
+                    d11.classList.remove("esconder");
+                    PostQuizz();
                 }
              }
 
          }else{
             alert("O Título do nível deve ter no mínimo 10 caracteres, a porcentagem deve ser de 0-100, pelo menos uma das porcentagens mínimas deve ser =0, a imagem deve ser no formato de URL e a descrição deve ter no mínimo 30 caracteres!!")
-        }
+         }
     }
-   
+}
+
+let ObjFinal;
+let idFin;
+let titleFin;
+let imageFin;
+
+function PostQuizz(){
+    ObjFinal={
+        title: tituloQuiz,
+        image: URLimg,
+        questions: dadosPerguntas,
+        levels: dadosNiveis
+    }
+
+    let promessa=axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",ObjFinal);
+    promessa.then(VerObjeto);
+   // promessa.catch();
+}
 
 
+function VerObjeto(resposta){
+    console.log(resposta);
+    idFin=resposta.data.id;
+    titleFin=resposta.data.title;
+    imageFin=resposta.data.image;
+    PegarQuizFeito();
+}
 
-
+function  PegarQuizFeito(){
+    let promessa= axios.post(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idFin}`)
+    promessa.then(chamarQuiz);
+}
+function chamarQuiz(){
+    
 }

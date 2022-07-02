@@ -2,7 +2,7 @@
 //ele envia um objeto com 50 ultimos quizzes;
 
 //da pra mudar a versão do link para "v7" para testar
-/*
+
 let url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes';
 let quizzes;
 let divQuizz = document.querySelector('.all-quizzes');
@@ -167,4 +167,3 @@ function respostaVerificar(click, booleanoResposta){
         console.log("voce errou")
     }
 }
-*/
