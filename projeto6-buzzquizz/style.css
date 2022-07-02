@@ -238,7 +238,7 @@ input::placeholder{
     height: 825px;
     width: 600px;
     padding: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .box-9 input{
     margin-bottom: 13px;
@@ -251,6 +251,7 @@ input::placeholder{
     height: 316px;
     width: 600px;
     padding: 20px;
+    margin-bottom: 30px;
 }
 .box-10 input{
     margin-bottom: 13px;
@@ -328,14 +329,14 @@ input::placeholder{
 
 .box-questions{
     width: 759px;
-    
+    height: 676px;
     margin: 55px auto;
     box-shadow: 0px 0px 10px 0px #0000000D; 
 }
 
 .box-img-question{
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -349,7 +350,6 @@ input::placeholder{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 18px 0 18px 0;
 }
 .question p{
     font-size: 23px;
@@ -360,9 +360,8 @@ input::placeholder{
 
 .options{
     width: 330px;
-    height: auto;
+    height: 200px;
     margin: 1%;
-    margin-bottom: 18px;
     cursor: pointer;
 }
 .options img{
@@ -388,38 +387,6 @@ input::placeholder{
 
 
 
-
-.box-result{
-    width: 759px;
-    height: auto;
-    margin: 55px auto;
-    box-shadow: 0px 0px 10px 0px #0000000D;
-    display:flex;
-    justify-content: center; 
-}
-
-.result-text{
-    width: 680px;
-    height: 137px;
-    background-color: #434CA0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 18px 0 18px 0;
-}
-
-.result{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin-bottom: 18px;
-}
-
-.result img{
-    width: 364px;
-    height: 273px;
-    margin-right: 18px;
-}
 
 
 
@@ -494,7 +461,7 @@ input::placeholder{
 
     .box-img-question{
         width: 100%;
-        height: auto;
+        height: 100%;
     }
     
     .question{
