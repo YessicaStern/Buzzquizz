@@ -9,6 +9,9 @@ let obj
 let questions = []
 let answers = []
 let perguntas
+let alternativasSelecionadas = 0
+let pontos = 0
+let quantidadeCliques = 0
 
 renderizarQuizzes();
 
@@ -152,16 +155,14 @@ function addQuestoes(){
 
 }
 
-let alternativasSelecionadas = 0
-let pontos = 0
-let quantidadeCliques = 0
+
 
 function respostaSelecionar(click, resultado){
 
     //saber quantidade de vezes clicou
     if (click) {
         quantidadeCliques++
-    }
+    }else{}
     
     let perguntaSelecionada = click.parentNode
     let respostaCerta = perguntaSelecionada.querySelector('.true')    
@@ -171,12 +172,15 @@ function respostaSelecionar(click, resultado){
     for (let i = 0; i < respostaErrada.length; i++) {
         respostaErrada[i] = perguntaSelecionada.querySelector('.false')
         respostaErrada[i].classList.add('wrong')
+        //remover onclick
+        respostaErrada[i].removeAttribute('onclick')
     }
-
+    //remover onclick
+    respostaCerta.removeAttribute('onclick')
 
     //saber quantidade de resposta por pergunta
     let quantidade = perguntaSelecionada.querySelectorAll('.options')
-    answers = quantidade
+    answers = quantidade   
     
     //adiciona opacity em todas as respostas
     for (let i = 0; i < answers.length; i++) {
@@ -190,7 +194,6 @@ function respostaSelecionar(click, resultado){
 
     //adiciona classe correct
     respostaCerta.classList.add('correct')
-
     //remove classe opacity da resposta escolhida
     click.classList.remove('opacity')
 
@@ -199,6 +202,34 @@ function respostaSelecionar(click, resultado){
         pontos++
     }
     
+    setTimeout(fimDoQuizz, 2000)
 }
 
-//FALTA FAZER TRAVAR O CLICK, PARA N PODER CLICAR MAIS DE UMA VEZ
+function fimDoQuizz(){
+
+    let divResultado = document.querySelector('.result-all')
+    console.log(divResultado)
+    divResultado.classList.remove('esconder')
+
+    if(perguntas.length === quantidadeCliques){
+        console.log("ACABOU")
+        divResultado += `
+        <div class="box-result">
+        <div class="box-img-result">
+
+            <div class="result-text">
+                <p>TESTE</p>
+            </div>
+          
+            <div class="result">
+                <img src="https://img.freepik.com/fotos-gratis/imagem-aproximada-em-tons-de-cinza-de-uma-aguia-careca-americana-em-um-fundo-escuro_181624-31795.jpg?w=2000" alt="">
+                <p>teste</p>
+             </div>
+        
+        </div>
+        </div>
+        ` 
+    }
+    let element = document.querySelector('.result')
+    element.scrollIntoView()
+}
