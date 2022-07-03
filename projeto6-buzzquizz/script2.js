@@ -283,7 +283,7 @@ function PostQuizz(){
         levels: dadosNiveis
     }
 
-    let promessa=axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",ObjFinal);
+    let promessa=axios.post("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes",ObjFinal);
     promessa.then(VerObjeto);
    // promessa.catch();
 }
@@ -296,19 +296,22 @@ function VerObjeto(resposta){
     imageFin=resposta.data.image;
     PegarQuizFeito();
 }
-//let idFin=9436;
+//let idFin=435;
 //PegarQuizFeito();
 function  PegarQuizFeito(){
-    let promessa= axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idFin}`)
+    let promessa= axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${idFin}`)
     promessa.then(chamarQuiz);  
 }
 function chamarQuiz(resposta){
     console.log(resposta);
     let carregarQuiz=`<img class="imagem-do-quizz" src="${resposta.data.image}"/><h3 class="h3-escrita-da-img">${resposta.data.title}</h3>
-    <button class="botao-acessar-quizz"><h5 class="h5-desktop-8a11" >Acessar Quizz</h5></button>
+    <button class="botao-acessar-quizz" onclick="esconderD11();pegarIdQuizz(this, ${idFin})"><h5 class="h5-desktop-8a11" >Acessar Quizz</h5></button>
     <div class="voltar-pra-home" onclick="voltarTudo();"><h4 class="voltar-pra-home">Voltar pra home</h4></div>`;
     desktop11.innerHTML+= carregarQuiz;
 }
 function voltarTudo(){
-    window.location.reload();
+    window.location.reload();   
+}
+function esconderD11(){
+    d11.classList.add("esconder");
 }
