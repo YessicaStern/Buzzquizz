@@ -2,10 +2,6 @@
 //ele envia um objeto com 50 ultimos quizzes;
 
 //da pra mudar a versão do link para "v7" para testar
-<<<<<<< HEAD
-
-=======
->>>>>>> 00f5771e91d071b321ab7b5d603fb30c2a64c1d3
 let url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes';
 let quizzes;
 let divQuizz = document.querySelector('.all-quizzes');
@@ -239,16 +235,7 @@ function fimDoQuizz(){
         </div>
         ` 
     }
-<<<<<<< HEAD
-    else{
-        console.log("voce errou")
-    }
-}
-
-
-=======
     let element = document.querySelector('.result')
     element.scrollIntoView()
        
 }
->>>>>>> 00f5771e91d071b321ab7b5d603fb30c2a64c1d3

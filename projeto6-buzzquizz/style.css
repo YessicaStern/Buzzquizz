@@ -273,6 +273,7 @@ input::placeholder{
     display: flex;
     align-items: flex-end;
     position: relative;
+    background-color: green;
 }
 .h3-escrita-da-img{
     font-weight: 400;
@@ -284,7 +285,8 @@ input::placeholder{
         0 0 0.8em black;
  /*   text-shadow: 0.1em 0.1em 0.2em black;*/
    position: absolute;
-   top: 370px;
+   margin-bottom: 15px;
+   margin-left: 15px;
 }
 .voltar-pra-home{
     font-weight: 400;

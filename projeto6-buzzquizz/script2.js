@@ -11,7 +11,7 @@ let d11= document.querySelector(".d-11");
 let desktop9=document.querySelector(".desktop-9");
 let desktop10=document.querySelector(".desktop-10");
 let desktop11=document.querySelector(".desktop-11");
-d11.classList.remove("esconder");
+//d11.classList.remove("esconder");
 
 let tituloQuiz;
 let URLimg; 
@@ -94,7 +94,7 @@ function clickPerguntas(el){
 
 
 function SeguirCriarNiveis(){
-
+gerarBotao();
     for(let i=1; i<=qtdPerguntas; i++){
         
         let pergunta=document.querySelector(`.pergunta-${i}`);
@@ -114,12 +114,11 @@ function SeguirCriarNiveis(){
         let URLimgCerta =new URL (imgCerta);
         let URLimgErr1 = new URL (imgErr1);
         let URLimgErr2 = new URL (imgErr2);
-        let URLimgErr3= new URL (imgErr3);*/
+        let URLimgErr3= new URL (imgErr3);
     
 
         // ajeitar isso aqui
       /*  try {
-
             URLimgCerta= new URL (imgCerta);
             URLimgErr1= new URL (imgErr1);
             URLimgErr2= new URL (imgErr2);
@@ -198,8 +197,12 @@ function gerarNiveis(){
      </div></div> `
         desktop10.innerHTML+=NiveisFechados;
     }
+}
+
+function gerarBotao(){
     desktop10.innerHTML+= `<button class="botao-desktop" onclick="finalizarQuiz()" ><h5 class="h5-desktop-8a11">Finalizar Quizz</h5></button>`
 }
+
 let arr=[];
 function clickNiveis(el){   
     selecionadoNiveis = document.querySelector(".desktop-10 .selecionadoNiveis");
@@ -228,7 +231,7 @@ function finalizarQuiz(){
         let tituloNivel=niveis.querySelector(".titulo-nivel").value;
         let porcentagem=niveis.querySelector(".porcentagem").value;
         let imgNivel=niveis.querySelector(".URL-img-nivel").value;
-        let descricao=niveis.querySelector(".descricao").value;*/
+        let descricao=niveis.querySelector(".descricao").value;
 
        /* try {
            
