@@ -306,6 +306,9 @@ function chamarQuiz(resposta){
     console.log(resposta);
     let carregarQuiz=`<img class="imagem-do-quizz" src="${resposta.data.image}"/><h3 class="h3-escrita-da-img">${resposta.data.title}</h3>
     <button class="botao-acessar-quizz"><h5 class="h5-desktop-8a11" >Acessar Quizz</h5></button>
-    <div class="voltar-pra-home"><h4 class="voltar-pra-home">Voltar pra home</h4></div>`;
+    <div class="voltar-pra-home" onclick="voltarTudo();"><h4 class="voltar-pra-home">Voltar pra home</h4></div>`;
     desktop11.innerHTML+= carregarQuiz;
+}
+function voltarTudo(){
+    window.location.reload();
 }
