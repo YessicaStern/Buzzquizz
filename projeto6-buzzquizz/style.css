@@ -355,7 +355,6 @@ input::placeholder{
 
 .options{
     width: 330px;
-    height: 200px;
     margin: 1%;
     cursor: pointer;
 }
@@ -414,11 +413,42 @@ input::placeholder{
     margin-right: 18px;
 }
 
-.add-question{
-    
- 
+.restart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.restart-game{
+    background-color:#EC362D;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    border: #EC362D;
+
+    font-size: 21px;
+    font-weight: 400;
+    text-align: center;
+
+    width: 260px;
+    height: 52px;
+
+}
+
+.back-home{
+    margin: 1%;
+    cursor: pointer;
+    width: 260px;
+    height: 52px;
+    border: none;
+    background-color: #E5E5E5;
+    color:#818181;
+    font-size: 21px;
+    font-weight: 400;
+    text-align: center;
+
+}
 /********************************************************   BREAKPOINT 1100px     ************************************************/
 @media (max-width: 1100px){
 
