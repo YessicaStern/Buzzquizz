@@ -542,7 +542,7 @@ input::placeholder{
 /*******************************************************  QUIZ PRONTO  ******************************************************/
     .box-questions{
         width: 90%;
-        height: 676px;
+        height: auto;
         padding: 1%;
     }
 
@@ -562,9 +562,27 @@ input::placeholder{
         width: 90%;
         height: 100%;
     }
-
+    .box-img-result{
+        display:flex;
+        flex-direction: column;
+    }
+    .box-img-result img{
+        width: 100%;
+        object-fit: cover;
+    }
+    .box-img-result p{
+        margin-top: 5%;
+        width: 100%;
+    }
+    .result{
+        display: flex;
+        flex-direction: column;
+    }
     .question{
         width: 90%;
+    }
+    .question p{
+        height: 100%;
     }
 
     .options{
