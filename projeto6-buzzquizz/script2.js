@@ -282,7 +282,6 @@ function PostQuizz(){
         questions: dadosPerguntas,
         levels: dadosNiveis
     }
-
     let promessa=axios.post("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes",ObjFinal);
     promessa.then(VerObjeto);
    // promessa.catch();
