@@ -294,6 +294,9 @@ const TodosIdsUsuario=[];
 function VerObjeto(resposta){
     console.log(resposta);
     idFin=resposta.data.id;
+    
+    console.log(chave)
+    console.log(userID)
 /*
     TodosIdsUsuario.push(idFin);
     console.log("TDS USUARIOS ====="+TodosIdsUsuario);
@@ -328,13 +331,13 @@ function esconderD11(){
 
 /************************************************** QUIZZES USUARIOO **********************************************/
 
-const idsSerializados = JSON.stringify(TodosIdsUsuario);
+const idsSerializados = JSON.stringify(resposta);
 localStorage.setItem("listaIds", idsSerializados);
 //pegando de volta
 const pegandoIds = localStorage.getItem("listaIds");
 const listaIds= JSON.parse(pegandoIds);
 
-console.log("lista ids ======" + listaIds)
+//console.log("lista ids ======" + listaIds)
 
 
 /*
