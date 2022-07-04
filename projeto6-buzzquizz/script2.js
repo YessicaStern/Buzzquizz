@@ -287,10 +287,20 @@ function PostQuizz(){
    // promessa.catch();
 }
 
+const TodosIdsUsuario=[];
+
+
 
 function VerObjeto(resposta){
     console.log(resposta);
     idFin=resposta.data.id;
+/*
+    TodosIdsUsuario.push(idFin);
+    console.log("TDS USUARIOS ====="+TodosIdsUsuario);
+*/
+
+
+
     titleFin=resposta.data.title;
     imageFin=resposta.data.image;
     PegarQuizFeito();
@@ -309,8 +319,53 @@ function chamarQuiz(resposta){
     desktop11.innerHTML+= carregarQuiz;
 }
 function voltarTudo(){
-    window.location.reload();   
+    axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes`);
+    window.location.reload();
 }
 function esconderD11(){
     d11.classList.add("esconder");
 }
+
+/************************************************** QUIZZES USUARIOO **********************************************/
+
+const idsSerializados = JSON.stringify(TodosIdsUsuario);
+localStorage.setItem("listaIds", idsSerializados);
+//pegando de volta
+const pegandoIds = localStorage.getItem("listaIds");
+const listaIds= JSON.parse(pegandoIds);
+
+console.log("lista ids ======" + listaIds)
+
+
+/*
+let tela1=document.querySelector(".first-quizz");
+let tela2=document.querySelector(".your-quizzes-box");
+
+axiosIdsUsuario();
+function axiosIdsUsuario(){
+    let promessa=axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes`);
+    promessa.then(DefinirTelaInicial);
+}
+
+function DefinirTelaInicial(resposta){
+    console.log(resposta);
+    console.log(listaIds);
+    let idLocal=resposta.data.id;
+    let comprimento=resposta.data;
+    if(listaIds!=[]){
+        tela1.classList.add("esconder");
+        tela2.classList.remove("esconder");
+        for(let y=0;y<comprimento.length;y++){
+            
+          /*  if(comprimento[y].id.includes(listaIds.id[y])){
+                console.log("contem");
+            }*//*
+            
+           if(listaIds[y].id.includes(comprimento[y].id)){
+
+            document.querySelector(".your-quizz").innerHTML+=`<div class="quizz" onclick="pegarIdQuizz(this, ${listaIds[y]})">
+            <img src="${resposta.data[y].image}" >
+            <p>${resposta.data[y].title}</p></div>`
+        }
+    }
+}}*/
