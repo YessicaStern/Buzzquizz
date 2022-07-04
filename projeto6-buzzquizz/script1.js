@@ -228,7 +228,7 @@ function fimDoQuizz(){
             //console.log(obj.levels.length)
             console.log(obj.levels[i].minValue)
             
-            if(pontosFinal === obj.levels[i].minValue){
+            if((pontosFinal === obj.levels[i].minValue || pontosFinal >= obj.levels[i].minValue) && obj.levels[i].minValue != 0){
                 let divResultado = document.querySelector('.result-all')
                     divResultado.classList.remove('esconder')
 
@@ -256,62 +256,35 @@ function fimDoQuizz(){
                 let element = document.querySelector('.result')
                 element.scrollIntoView()
             }
-            if(pontosFinal <= obj.levels[i].minValue && pontosFinal != 0 && obj.levels[i].minValue != 0){
+            if (pontosFinal >= obj.levels[i].minValue && obj.levels[i].minValue === 0){
                 let divResultado = document.querySelector('.result-all')
-                divResultado.classList.remove('esconder')
+                    divResultado.classList.remove('esconder')
 
-                divResultado.innerHTML = `
-                <div class="box-result">
-                <div class="box-img-result">
+                    divResultado.innerHTML = `
+                    <div class="box-result">
+                    <div class="box-img-result">
 
-                <div class="result-text">
-                    <p>${obj.levels[i].title}</p>
+                    <div class="result-text">
+                        <p>${obj.levels[i].title}</p>
+                    </div>
+          
+                    <div class="result">
+                        <img src="${obj.levels[i].image}" alt="">
+                        <p>${obj.levels[i].text}</p>
+                    </div>
+        
                 </div>
-      
-                <div class="result">
-                    <img src="${obj.levels[i].image}" alt="">
-                    <p>${obj.levels[i].text}</p>
                 </div>
-    
-            </div>
-            </div>
-    
-            <div class="restart">
-            <button class="restart-game" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
-            <button class="back-home" onclick="voltarHome()">Voltar para home</button>
-            </div>
-            `
-            let element = document.querySelector('.result')
-            element.scrollIntoView()
+        
+                <div class="restart">
+                <button class="restart-game" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+                <button class="back-home" onclick="voltarHome()">Voltar para home</button>
+                </div>
+                `
+                let element = document.querySelector('.result')
+                element.scrollIntoView()
             }
-            if(pontosFinal >= obj.levels[i].minValue && pontosFinal != 0 && obj.levels[i].minValue != 0){
-                let divResultado = document.querySelector('.result-all')
-                divResultado.classList.remove('esconder')
-
-                divResultado.innerHTML = `
-                <div class="box-result">
-                <div class="box-img-result">
-
-                <div class="result-text">
-                    <p>${obj.levels[i].title}</p>
-                </div>
-      
-                <div class="result">
-                    <img src="${obj.levels[i].image}" alt="">
-                    <p>${obj.levels[i].text}</p>
-                </div>
-    
-            </div>
-            </div>
-    
-            <div class="restart">
-            <button class="restart-game" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
-            <button class="back-home" onclick="voltarHome()">Voltar para home</button>
-            </div>
-            `
-            let element = document.querySelector('.result')
-            element.scrollIntoView()
-            }
+            
         }           
     }
 

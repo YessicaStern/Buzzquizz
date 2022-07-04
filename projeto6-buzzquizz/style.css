@@ -408,6 +408,19 @@ input::placeholder{
     justify-content: center;
     margin: 18px 0 18px 0;
 }
+.result-text p{
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 23px;
+    word-break: break-word;
+}
+.result p{
+    font-size: 19px;
+    font-weight: 700;
+    text-align: left;
+    color: #484848;
+}
 
 .result{
     display: flex;
@@ -529,17 +542,51 @@ input::placeholder{
 /*******************************************************  QUIZ PRONTO  ******************************************************/
     .box-questions{
         width: 90%;
-        height: 676px;
+        height: auto;
+        padding: 1%;
+    }
+
+    .top-img{
+        word-break: break-word;
+        text-align: center;
     }
 
     .box-img-question{
         width: 100%;
-        height: 100%;
-        padding: 1%;
+        height: 100%;  
     }
-    
+
+    .box-img-result{
+        width: 90%;
+        height: 100%;
+        
+    }
+
+    .box-result{
+        width: 90%;
+        height: 100%;
+    }
+    .box-img-result{
+        display:flex;
+        flex-direction: column;
+    }
+    .box-img-result img{
+        width: 100%;
+        object-fit: cover;
+    }
+    .box-img-result p{
+        margin-top: 5%;
+        width: 100%;
+    }
+    .result{
+        display: flex;
+        flex-direction: column;
+    }
     .question{
         width: 90%;
+    }
+    .question p{
+        height: 100%;
     }
 
     .options{
