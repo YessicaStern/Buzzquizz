@@ -294,14 +294,7 @@ const TodosIdsUsuario=[];
 function VerObjeto(resposta){
     console.log(resposta);
     idFin=resposta.data.id;
-<<<<<<< HEAD
 
-=======
-    
-    console.log(chave)
-    console.log(userID)
-/*
->>>>>>> 032473ae4ee98dba0212531f0208fb2da3ed6328
     TodosIdsUsuario.push(idFin);
     console.log("TDS USUARIOS ====="+TodosIdsUsuario);
  /*  localStorage.setItem("listaIds", TodosIdsUsuario);
@@ -337,13 +330,6 @@ function esconderD11(){
 
 /************************************************** QUIZZES USUARIOO **********************************************/
 
-<<<<<<< HEAD
-
-
-
-
-
-
 function adicionarIdLocal(){
     if (localStorage.getItem('IdsUsuario') === null) {
         localStorage.setItem('IdsUsuario', JSON.stringify([TodosIdsUsuario]));
@@ -359,15 +345,6 @@ console.log("lista ids ======"+ pegandoIds );
 
 
 
-=======
-const idsSerializados = JSON.stringify(resposta);
-localStorage.setItem("listaIds", idsSerializados);
-//pegando de volta
-const pegandoIds = localStorage.getItem("listaIds");
-const listaIds= JSON.parse(pegandoIds);
-
-//console.log("lista ids ======" + listaIds)
->>>>>>> 032473ae4ee98dba0212531f0208fb2da3ed6328
 
 
 /*
