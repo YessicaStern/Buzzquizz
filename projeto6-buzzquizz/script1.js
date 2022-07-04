@@ -2,7 +2,7 @@
 //ele envia um objeto com 50 ultimos quizzes;
 
 //da pra mudar a versão do link para "v7" para testar
-let url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes';
+let url = 'https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes';
 let quizzes;
 let divQuizz = document.querySelector('.all-quizzes');
 let obj
@@ -115,7 +115,6 @@ function addTemplateQuizz(){
         let divQuestion = document.querySelector('.push-question')
         
         divQuestion.innerHTML += `
-
         <div class="box-questions">
             <div class="box-img-question catch-${i}" >
                 <div class="question" style="background-color:${perguntas[i].color}">

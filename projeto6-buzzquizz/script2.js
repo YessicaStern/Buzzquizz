@@ -10,7 +10,7 @@ let d10= document.querySelector(".d-10");
 let d11= document.querySelector(".d-11");
 let desktop9=document.querySelector(".desktop-9");
 let desktop10=document.querySelector(".desktop-10");
-
+let desktop11=document.querySelector(".desktop-11");
 //d11.classList.remove("esconder");
 
 let tituloQuiz;
@@ -94,7 +94,7 @@ function clickPerguntas(el){
 
 
 function SeguirCriarNiveis(){
-
+gerarBotao();
     for(let i=1; i<=qtdPerguntas; i++){
         
         let pergunta=document.querySelector(`.pergunta-${i}`);
@@ -119,7 +119,6 @@ function SeguirCriarNiveis(){
 
         // ajeitar isso aqui
       /*  try {
-
             URLimgCerta= new URL (imgCerta);
             URLimgErr1= new URL (imgErr1);
             URLimgErr2= new URL (imgErr2);
@@ -172,7 +171,7 @@ function SeguirCriarNiveis(){
          }
 
     }else{
-        alert("Para continuar os campos não devem estar vazios, o texto da pergunta deve ter no mínimo 20 caracteres, a cor precisa ser no formato hexadecimal e as imagens no formato de URL")
+        alert("Para continuar os campos não devem estar vazios, o texto da pergunta deve ter no mínimo 20 caracteres, a cor precisa ser no formato hexadecimal e as imagens no formato de URL");
     } 
 }  
 }
@@ -198,8 +197,12 @@ function gerarNiveis(){
      </div></div> `
         desktop10.innerHTML+=NiveisFechados;
     }
+}
+
+function gerarBotao(){
     desktop10.innerHTML+= `<button class="botao-desktop" onclick="finalizarQuiz()" ><h5 class="h5-desktop-8a11">Finalizar Quizz</h5></button>`
 }
+
 let arr=[];
 function clickNiveis(el){   
     selecionadoNiveis = document.querySelector(".desktop-10 .selecionadoNiveis");
@@ -280,7 +283,7 @@ function PostQuizz(){
         levels: dadosNiveis
     }
 
-    let promessa=axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",ObjFinal);
+    let promessa=axios.post("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes",ObjFinal);
     promessa.then(VerObjeto);
    // promessa.catch();
 }
@@ -293,11 +296,22 @@ function VerObjeto(resposta){
     imageFin=resposta.data.image;
     PegarQuizFeito();
 }
-
+//let idFin=435;
+//PegarQuizFeito();
 function  PegarQuizFeito(){
-    let promessa= axios.post(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idFin}`)
-    promessa.then(chamarQuiz);
+    let promessa= axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${idFin}`)
+    promessa.then(chamarQuiz);  
 }
-function chamarQuiz(){
-    
+function chamarQuiz(resposta){
+    console.log(resposta);
+    let carregarQuiz=`<img class="imagem-do-quizz" src="${resposta.data.image}"/><h3 class="h3-escrita-da-img">${resposta.data.title}</h3>
+    <button class="botao-acessar-quizz" onclick="esconderD11();pegarIdQuizz(this, ${idFin})"><h5 class="h5-desktop-8a11" >Acessar Quizz</h5></button>
+    <div class="voltar-pra-home" onclick="voltarTudo();"><h4 class="voltar-pra-home">Voltar pra home</h4></div>`;
+    desktop11.innerHTML+= carregarQuiz;
+}
+function voltarTudo(){
+    window.location.reload();   
+}
+function esconderD11(){
+    d11.classList.add("esconder");
 }

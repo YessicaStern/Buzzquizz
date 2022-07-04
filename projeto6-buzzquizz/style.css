@@ -261,7 +261,6 @@ input::placeholder{
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-  /*  margin-top: 25px;*/
 }
 .icone-escrever{
     width: 20px;
@@ -271,11 +270,10 @@ input::placeholder{
 .imagem-do-quizz{
     width: 500px;
     height: 266px;
-    background-color: #EC362D;
     display: flex;
     align-items: flex-end;
-    padding: 15px;
     position: relative;
+    background-color: green;
 }
 .h3-escrita-da-img{
     font-weight: 400;
@@ -283,7 +281,9 @@ input::placeholder{
     line-height: 27px;
     display: flex;
     color: #FFFFFF;
+    text-shadow: 0 0 0.8em black, 0 0 0.8em black,0 0 0.8em black;
     position: absolute;
+    top: 450px;
 }
 .voltar-pra-home{
     font-weight: 400;
@@ -292,6 +292,7 @@ input::placeholder{
     display: flex;
     color: #818181; 
 }
+
 
 /*******************************************************  QUIZ PRONTO  ******************************************************/
 
@@ -492,6 +493,7 @@ input::placeholder{
     }
     .h3-escrita-da-img{
         font-size: 19px;
+        top: 370px;
     }
     .h4-desktop-8a11,.h5-desktop-8a11,.h6-desktop-8a11{
         font-size: 20px;
