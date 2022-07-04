@@ -145,12 +145,15 @@ h1,h2,h3,h4,h5,h6{
 .quizz p{
     position: relative;
     color: #FFFFFF;
-    padding: 10%;
+    padding: 5%;
+    display: flex;
+    align-items: flex-end;
     left: 0;
-    top: 35%;
+    top: 0;
     font-size: 19px;
     font-weight: 400;
     word-break: break-word;
+    height: 100%;
 }
 
 /******************************************************* CRIAR QUIZ *******************************************************/
