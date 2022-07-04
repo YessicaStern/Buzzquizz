@@ -13,6 +13,8 @@ let alternativasSelecionadas = 0
 let pontos = 0
 let quantidadeCliques = 0
 
+
+
 renderizarQuizzes();
 
 //localStorage.setItem("chave", `id`)
@@ -68,8 +70,8 @@ function botaoCriarQuizz (){
 
 //--------------------------------------------------------------------------------------------
 
-function pegarIdQuizz(click, idQuizz){
-   
+function pegarIdQuizz(elemento, idQuizz){
+    
     let promessa = axios.get(`${url}/${idQuizz}`);
     promessa.then(abrirQuizz)
     promessa.catch(erroPromessa)
@@ -114,8 +116,8 @@ function addTemplateQuizz(){
         
         divQuestion.innerHTML += `
         <div class="box-questions">
-            <div class="box-img-question catch-${i}">
-                <div class="question">
+            <div class="box-img-question catch-${i}" >
+                <div class="question" style="background-color:${perguntas[i].color}">
                     <p>${perguntas[i].title}</p>
                 </div>
             </div>
@@ -128,20 +130,25 @@ function addTemplateQuizz(){
     addQuestoes()
 
 }
-
+function misturar() { 
+    return Math.random() - 0.5; 
+}
 function addQuestoes(){
  
-
     //saber quantidade de perguntas
     for (let j = 0; j < perguntas.length ; j++){
-
+        
+        answers = perguntas[j].answers
+        
         let perguntaEsp = perguntas[j].answers
 
         let divResposta = document.querySelector(`.catch-${questions[j]}`)
-
+        //misturar?
+        answers.sort(misturar)
         //add respostas
         for (let i = 0; i < perguntas[j].answers.length; i++){
-
+            
+        
             divResposta.innerHTML += 
             `
             <div class="options catchAnswer-${i} ${perguntaEsp[i].isCorrectAnswer}" onclick="respostaSelecionar(this, ${perguntaEsp[i].isCorrectAnswer})">
@@ -155,13 +162,9 @@ function addQuestoes(){
 }
 
 
-
 function respostaSelecionar(click, resultado){
-
     //saber quantidade de vezes clicou
-    if (click) {
-        quantidadeCliques++
-    }else{}
+    
     
     let perguntaSelecionada = click.parentNode
     let respostaCerta = perguntaSelecionada.querySelector('.true')    
@@ -172,7 +175,8 @@ function respostaSelecionar(click, resultado){
         respostaErrada[i] = perguntaSelecionada.querySelector('.false')
         respostaErrada[i].classList.add('wrong')
         //remover onclick
-        respostaErrada[i].removeAttribute('onclick')
+        respostaErrada[i].removeAttribute('onclick')   
+        
     }
     //remover onclick
     respostaCerta.removeAttribute('onclick')
@@ -188,6 +192,7 @@ function respostaSelecionar(click, resultado){
 
         //respostaErrada.classList.add('wrong')
         todos.classList.add('opacity')
+        
 
     }
 
@@ -201,39 +206,110 @@ function respostaSelecionar(click, resultado){
         pontos++
     }
     
+    quantidadeCliques ++ 
+    
     fimDoQuizz()
+ 
     //setTimeout(fimDoQuizz, 2000)
 }
 
 function fimDoQuizz(){
-
+    
+    
     if(perguntas.length === quantidadeCliques){
-        let divResultado = document.querySelector('.result-all')
-        divResultado.classList.remove('esconder')
+        let pontosTotal = pontos * 10;
+        let totalPerguntas =  perguntas.length * 10;
 
-        console.log("ACABOU")
-        divResultado.innerHTML = `
-        <div class="box-result">
-        <div class="box-img-result">
-            <div class="result-text">
-                <p>TESTE</p>
-            </div>
+        let pontosFinal = (pontosTotal / totalPerguntas) * 100;
+        pontosFinal = pontosFinal.toFixed()
+
+        for(let i = 0; i < obj.levels.length; i++){
+            console.log(obj.levels[i].minValue)
+            console.log(pontosFinal)
+            if(pontosFinal >= obj.levels[i].minValue){
+                let divResultado = document.querySelector('.result-all')
+                    divResultado.classList.remove('esconder')
+
+                    divResultado.innerHTML = `
+                    <div class="box-result">
+                    <div class="box-img-result">
+
+                    <div class="result-text">
+                        <p>${obj.levels[i].title}</p>
+                    </div>
           
-            <div class="result">
-                <img src="https://img.freepik.com/fotos-gratis/imagem-aproximada-em-tons-de-cinza-de-uma-aguia-careca-americana-em-um-fundo-escuro_181624-31795.jpg?w=2000" alt="">
-                <p>teste</p>
-             </div>
+                    <div class="result">
+                        <img src="${obj.levels[i].image}" alt="">
+                        <p>${obj.levels[i].text}</p>
+                    </div>
         
-        </div>
-        </div>
+                </div>
+                </div>
         
-        <div class="restart">
-        <button>Reiniciar Quizz</button>
-        <button>Voltar para home</button>
-        </div>
-        ` 
+                <div class="restart">
+                <button class="restart-game" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+                <button class="back-home" onclick="voltarHome()">Voltar para home</button>
+                </div>
+                `
+                let element = document.querySelector('.result')
+                element.scrollIntoView()
+            }
+                  
+            }
+
+         }
+      
+         for(let i = 0; i < obj.levels.length; i++){
+            if(pontosFinal <= obj.levels[i].minValue){
+                let divResultado = document.querySelector('.result-all')
+                    divResultado.classList.remove('esconder')
+
+                    divResultado.innerHTML = `
+                    <div class="box-result">
+                    <div class="box-img-result">
+
+                    <div class="result-text">
+                        <p>${obj.levels[i].title}</p>
+                    </div>
+          
+                    <div class="result">
+                        <img src="${obj.levels[i].image}" alt="">
+                        <p>${obj.levels[i].text}</p>
+                    </div>
+        
+                </div>
+                </div>
+        
+                <div class="restart">
+                <button class="restart-game" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+                <button class="back-home" onclick="voltarHome()">Voltar para home</button>
+                </div>
+                `         
+                let element = document.querySelector('.result')
+                element.scrollIntoView() 
+        }
+
     }
-    let element = document.querySelector('.result')
-    element.scrollIntoView()
        
+}
+
+/**/
+
+function reiniciarQuizz(){
+    let esconder1 = document.querySelector('.result-all')
+    let esconder2 = document.querySelectorAll('.options')
+}
+
+function voltarHome(){
+    
+    let esconder1 = document.querySelector('.result-all')
+    let esconder2 = document.querySelector('.push-question')
+    esconder1.classList.add('esconder')
+    esconder2.classList.add('esconder')
+
+    let aparecer1 = document.querySelector('.display-one')
+    let aparecer2 = document.querySelector('.display-two')
+    aparecer1.classList.remove('esconder')
+    aparecer2.classList.remove('esconder')
+
 }
