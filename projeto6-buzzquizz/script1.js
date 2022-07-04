@@ -224,9 +224,12 @@ function fimDoQuizz(){
         pontosFinal = pontosFinal.toFixed()
 
         for(let i = 0; i < obj.levels.length; i++){
+            //console.log(obj.levels.length)
             console.log(obj.levels[i].minValue)
-            console.log(pontosFinal)
-            if(pontosFinal >= obj.levels[i].minValue){
+            //console.log(pontosFinal)
+            //console.log(obj.levels.minValue[j])
+
+            if(pontosFinal === obj.levels[i].minValue){
                 let divResultado = document.querySelector('.result-all')
                     divResultado.classList.remove('esconder')
 
@@ -254,46 +257,42 @@ function fimDoQuizz(){
                 let element = document.querySelector('.result')
                 element.scrollIntoView()
             }
-                  
+
+            else if (pontosFinal <= obj.levels[i].minValue){
+                let divResultado = document.querySelector('.result-all')
+                divResultado.classList.remove('esconder')
+
+                divResultado.innerHTML = `
+                <div class="box-result">
+                <div class="box-img-result">
+
+                <div class="result-text">
+                    <p>${obj.levels[i].title}</p>
+                </div>
+      
+                <div class="result">
+                    <img src="${obj.levels[i].image}" alt="">
+                    <p>${obj.levels[i].text}</p>
+                </div>
+    
+            </div>
+            </div>
+    
+            <div class="restart">
+            <button class="restart-game" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+            <button class="back-home" onclick="voltarHome()">Voltar para home</button>
+            </div>
+            `
+            let element = document.querySelector('.result')
+            element.scrollIntoView()
+            }
+            
+        
             }
 
          }
-      
-         for(let i = 0; i < obj.levels.length; i++){
-            if(pontosFinal <= obj.levels[i].minValue){
-                let divResultado = document.querySelector('.result-all')
-                    divResultado.classList.remove('esconder')
-
-                    divResultado.innerHTML = `
-                    <div class="box-result">
-                    <div class="box-img-result">
-
-                    <div class="result-text">
-                        <p>${obj.levels[i].title}</p>
-                    </div>
-          
-                    <div class="result">
-                        <img src="${obj.levels[i].image}" alt="">
-                        <p>${obj.levels[i].text}</p>
-                    </div>
-        
-                </div>
-                </div>
-        
-                <div class="restart">
-                <button class="restart-game" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
-                <button class="back-home" onclick="voltarHome()">Voltar para home</button>
-                </div>
-                `         
-                let element = document.querySelector('.result')
-                element.scrollIntoView() 
-        }
-
-    }
-       
+             
 }
-
-/**/
 
 function reiniciarQuizz(){
     let esconder1 = document.querySelector('.result-all')
@@ -302,14 +301,6 @@ function reiniciarQuizz(){
 
 function voltarHome(){
     
-    let esconder1 = document.querySelector('.result-all')
-    let esconder2 = document.querySelector('.push-question')
-    esconder1.classList.add('esconder')
-    esconder2.classList.add('esconder')
-
-    let aparecer1 = document.querySelector('.display-one')
-    let aparecer2 = document.querySelector('.display-two')
-    aparecer1.classList.remove('esconder')
-    aparecer2.classList.remove('esconder')
+    window.location.reload();
 
 }
