@@ -336,6 +336,7 @@ input::placeholder{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding: 2%;
 }
 
 .question{
@@ -368,6 +369,7 @@ input::placeholder{
     font-size: 20px;
     font-weight: 700;
     line-height: 1.8;
+    word-break: break-word;
 }
 
 .correct{
@@ -391,8 +393,12 @@ input::placeholder{
     justify-content: center; 
 }
 
+.box-img-result{
+    padding: 2%;
+}
+
 .result-text{
-    width: 680px;
+    
     height: 137px;
     background-color: #434CA0;
     display: flex;
@@ -406,6 +412,7 @@ input::placeholder{
     width: 100%;
     height: 100%;
     margin-bottom: 18px;
+    word-break: break-word;
 }
 
 .result img{
@@ -469,8 +476,19 @@ input::placeholder{
     }
 
     .title{
-        text-align: left;
+        display: flex;
+        justify-content: center;
         width: 100%;
+    }
+    
+    .quizz{
+        width: 90%;
+    }
+
+    .quizz img{
+        width: 90%;
+        object-fit: cover
+
     }
 
 /********************************************************    TELA 2     *********************************************************/
@@ -515,6 +533,7 @@ input::placeholder{
     .box-img-question{
         width: 100%;
         height: 100%;
+        padding: 1%;
     }
     
     .question{
@@ -523,7 +542,6 @@ input::placeholder{
 
     .options{
         width: 44%;
-        height: 200px;
         margin: 1%;
     }
     .options img{
