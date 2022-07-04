@@ -321,8 +321,9 @@ function chamarQuiz(resposta){
     desktop11.innerHTML+= carregarQuiz;
 }
 function voltarTudo(){
-    axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes`);
-    window.location.reload();
+    let promessa=axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes`);
+    promessa.then( window.location.reload());
+   
 }
 function esconderD11(){
     d11.classList.add("esconder");
@@ -330,24 +331,24 @@ function esconderD11(){
 
 /************************************************** QUIZZES USUARIOO **********************************************/
 
+
+let pegandoIds = localStorage.getItem("idsV6");
+console.log("lista ids ======" + pegandoIds);
+
 function adicionarIdLocal(){
-    if (localStorage.getItem('IdsUsuario') === null) {
-        localStorage.setItem('IdsUsuario', JSON.stringify([TodosIdsUsuario]));
+    if (localStorage.getItem('idsV6') === null) {
+        // Adicionando um array com um objeto no localstorage
+        localStorage.setItem('idsV6', JSON.stringify(TodosIdsUsuario));
       } else {
-        localStorage.setItem('IdsUsuario',
-          JSON.stringify([JSON.parse(localStorage.getItem('IdsUsuario')),TodosIdsUsuario])
-        );
-      }
-
+        // Copiando o array existente no localstorage e adicionando o novo objeto ao final.
+        localStorage.setItem(
+          'idsV6',
+          // O JSON.parse transforma a string em JSON novamente, o inverso do JSON.strigify
+          JSON.stringify([JSON.parse(localStorage.getItem('idsV6')),TodosIdsUsuario])
+        ); 
+      } 
 }
-let pegandoIds = localStorage.getItem("idsUsuario");
-console.log("lista ids ======"+ pegandoIds );
 
-
-
-
-
-/*
 let tela1=document.querySelector(".first-quizz");
 let tela2=document.querySelector(".your-quizzes-box");
 
@@ -359,23 +360,18 @@ function axiosIdsUsuario(){
 
 function DefinirTelaInicial(resposta){
     console.log(resposta);
-    console.log(listaIds);
     let idLocal=resposta.data.id;
     let comprimento=resposta.data;
-    if(listaIds!=[]){
+    if(pegandoIds!=null){
         tela1.classList.add("esconder");
         tela2.classList.remove("esconder");
-        for(let y=0;y<comprimento.length;y++){
-            
-          /*  if(comprimento[y].id.includes(listaIds.id[y])){
-                console.log("contem");
-            }*//*
-            
-           if(listaIds[y].id.includes(comprimento[y].id)){
+          for(let i=0;i<comprimento.length;i++){
+            if(pegandoIds.includes(comprimento[i].id)){
+                console.log("aaaa")
+            document.querySelector(".your-quizz").innerHTML+=`<div class="quizz" onclick="pegarIdQuizz(this, ${pegandoIds})">
+            <img src="${resposta.data[i].image}" >
+            <p>${resposta.data[i].title}</p></div>`
+            }
 
-            document.querySelector(".your-quizz").innerHTML+=`<div class="quizz" onclick="pegarIdQuizz(this, ${listaIds[y]})">
-            <img src="${resposta.data[y].image}" >
-            <p>${resposta.data[y].title}</p></div>`
-        }
     }
-}}*/
+}}
